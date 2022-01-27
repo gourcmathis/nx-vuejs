@@ -14,6 +14,6 @@ COPY package*.json ./
 RUN npm install
 
 # copie les fichiers et dossiers du projet dans le dossier de travail (par exemple : le dossier 'app')
-# COPY . .
+COPY . .
 
 CMD ["npm", "run", "serve"]

@@ -5,7 +5,7 @@ WORKDIR /app
 
 # ENV PATH /app/node_modules/.bin:$PATH
 
-RUN npm install -g @vue/cli
+RUN npm install -g @vue/cli@4.5.13
 
 # copie 'package.json' et 'package-lock.json' (si disponible)
 COPY package*.json ./

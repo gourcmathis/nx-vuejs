@@ -1,0 +1,86 @@
+<template>
+<Navbar/>
+<body class="text-center">
+
+<main class="form-signin">
+  <form>
+    <h1 class="h3 mb-3 fw-normal">Connectez vous</h1>
+
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Adresse mail</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Mot de passe</label>
+    </div>
+
+    <label>
+        Pas encore de compte ?
+        <a href="/register">S'enregistrer</a>
+        <p></p>
+      </label>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Se connecter</button>
+  </form>
+</main>
+
+
+    
+  </body>
+</template>
+
+<script>
+// @ is an alias to /src
+import Navbar from '@/components/Navbar.vue'
+
+export default {
+  name: 'LoginView',
+  components: {
+    Navbar
+  }
+}
+
+</script>
+
+<style scoped>
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+</style>

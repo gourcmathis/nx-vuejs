@@ -8,25 +8,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/group">Groups</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
+          <h4><a class="nav-link active" aria-current="page" href="/group">Groups</a></h4>
+        </li>   
       </ul>
     <button onclick="window.location.href='/login'" class="btn btn-outline-light" type="submit" >Connexion</button>
     <button onclick="window.location.href='/'" class="btn btn-outline-light" type="submit">Deconnexion</button>
@@ -41,9 +24,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .btn.btn-outline-light {
       margin-left: 5px;
+  }
+
+  h4 {
+    margin-bottom: -5px;
+    padding-left: 10px;
   }
 
   .navbar-mycolor {

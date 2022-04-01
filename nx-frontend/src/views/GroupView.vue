@@ -1,46 +1,36 @@
 <template>
   <div class="group">
     <Navbar/>
+  <h2 class="titre1">Créer un groupe:</h2>
   <div class="addgroup">
-    Créer un groupe:
     <form class="row g-3">
+    
     <div class="col-auto">
       <label for="inputGroupName" class="visually-hidden">Nom du groupe</label>
-      <input class="form-control" id="inputGroupName" placeholder="Nom du groupe">
+      <input  class="form-control" id="inputGroupName" placeholder="Nom du groupe">
     </div>
     
-
-    <label for="exampleDataList" class="form-label">Ajouter un membre</label>
-    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-    <datalist id="datalistOptions">
-      <option value="San Francisco"></option>
-      <option value="New York"></option>
-      <option value="Seattle"></option>
-      <option value="Los Angeles"></option>
-      <option value="Chicago"></option>
-    </datalist>
     <div class="col-auto">
       <button type="submit" class="btn btn-primary mb-3">Créer</button>
     </div>
+    <h1 class="titre2">Mes groupes:</h1>
   </form>
   </div>
   <div class="list-group">
-    <div v-for="group in groups" :key="group.Name" class="mylist">
+    <!-- <div v-for="group in data.groups" :key="group.groupname" class="mylist">
 
       <a href="#" class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">{{ group.Name }}</h5>
+          <h5 class="mb-1">{{ group.groupname }}</h5>
           <small class="text-muted">3 days ago</small>
         </div>
         <p class="mb-1">{{ group.members }}</p>
         <small class="text-muted"></small>
       </a>
 
-    </div>
+    </div> -->
 </div>
-  <div class="addgroup">
-
-  </div>
+  
   </div>
 </template>
 
@@ -53,22 +43,40 @@ export default {
   components: {
     Navbar
 },
-data(){
-    return {
-      groups: []
-    }
-  },
-  mounted() {
-      fetch("http://localhost:3000/groups")
-        .then(res => res.json())
-        .then(data => this.groups = data)
-        .catch(err => console.log(err.message))
-  }
+// setup() {
+//       const data = reactive({
+//           groupname:''
+          
+//       });
+
+//       const submit = async () => {
+//           await fetch('http://localhost:8000/groups/create/username={username}', {
+//           });
+//       }
+
+//       return {
+//           data,
+//           submit
+//       }
+// }
 }
 </script>
 
 <style scoped>
 
+  .titre1 {
+    margin-bottom: 20px;
+    margin-top: 40px;
+    margin-left: 23%;
+    margin-right: 30%;
+    color: white;
+  }
+
+  .titre2 {
+    margin-top: 40px;
+    margin-left: -60%;
+    color: white;
+  }
   .mylist{
     position: relative;
     margin-top: 10px;
@@ -82,6 +90,11 @@ data(){
   }
   .list-group{
     margin-top: 50px;
+  }
+
+  .addgroup {
+    margin-left: 40%;
+    margin-right: 30%;
   }
 
 </style>

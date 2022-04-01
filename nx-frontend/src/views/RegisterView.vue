@@ -46,7 +46,11 @@ export default {
       });
 
       const submit = async () => {
+<<<<<<< HEAD
           await fetch('http://localhost:8000/sign_up', {
+=======
+          await fetch('http://localhost:8000/users/sign_up', {
+>>>>>>> c1013d96b947cb3f29675133bda88415a8cdfdde
               method: 'POST',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify(data)

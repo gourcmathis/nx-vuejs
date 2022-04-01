@@ -3,15 +3,15 @@
 <body class="text-center">
 
 <main class="form-signin">
-  <form>
+  <form @submit.prevent="submit">
     <h1 class="h3 mb-3 fw-normal">Connectez vous</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input v-model="data.email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
       <label for="floatingInput">Adresse mail</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input v-model="data.password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Mot de passe</label>
     </div>
 
@@ -32,12 +32,33 @@
 <script>
 // @ is an alias to /src
 import Navbar from '@/components/Navbar.vue'
+import { reactive } from 'vue'
 
 export default {
   name: 'LoginView',
   components: {
     Navbar
+  },
+setup() {
+      const data = reactive({
+          email: '',
+          password: ''
+      });
+
+      const submit = async () => {
+          await fetch('http://localhost:8000/users/login', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify(data)
+          });
+      }
+
+      return {
+          data,
+          submit
+      }
   }
+  
 }
 
 </script>

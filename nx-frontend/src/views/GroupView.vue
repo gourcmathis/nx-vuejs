@@ -3,11 +3,11 @@
     <Navbar/>
   <h2 class="titre1">Créer un groupe:</h2>
   <div class="addgroup">
-    <form class="row g-3">
+    <form @submit.prevent="submit" class="row g-3">
     
     <div class="col-auto">
       <label for="inputGroupName" class="visually-hidden">Nom du groupe</label>
-      <input  class="form-control" id="inputGroupName" placeholder="Nom du groupe">
+      <input v-model="data.groupname" class="form-control" id="inputGroupName" placeholder="Nom du groupe">
     </div>
     
     <div class="col-auto">
@@ -37,28 +37,29 @@
 <script>
 // @ is an alias to /src
 import Navbar from '@/components/Navbar.vue'
+import { reactive } from 'vue'
 
 export default {
   name: 'GroupView',
   components: {
     Navbar
 },
-// setup() {
-//       const data = reactive({
-//           groupname:''
+setup() {
+      const data = reactive({
+          groupname:''
           
-//       });
+      });
 
-//       const submit = async () => {
-//           await fetch('http://localhost:8000/groups/create/username={username}', {
-//           });
-//       }
+      const submit = async () => {
+          await fetch('http://localhost:8000/groups/create/username={username}', {
+          });
+      }
 
-//       return {
-//           data,
-//           submit
-//       }
-// }
+      return {
+          data,
+          submit
+      }
+}
 }
 </script>
 

@@ -2,10 +2,15 @@
   <div class="home">
     <Navbar/>
     <div class="container">
-        
-        <div class="search"> <i class="fa fa-search"></i> <input type="text" class="form-control" placeholder="Quel film souhaitez vous trouver ?"> <button class="btn btn-light glass"><img src="../assets/search.svg" alt="Bootstrap" width="25" height="25"></button> </div>
+        <!-- <select class="form-select" aria-label="Default select example">
+			<option selected>Genre</option>
+			<option value="1">Drame</option>
+			<option value="2">Action</option>
+			<option value="3">Aventure</option>
+		</select> -->
+        <div class="search"> <i class="fa fa-search"></i> <input type="text" v-model="searchQuery" class="form-control" placeholder="Quel film souhaitez vous trouver ?"> <button class="btn btn-light glass"><img src="../assets/search.svg" alt="Bootstrap" width="25" height="25"></button> </div>
             
-    <div v-for="movie in movies" :key="movie.id" class="movie">
+    <div v-for="movie in resultQuery" :key="movie.title" class="movie">
         <div class="container mt-5">
 			<div class="card movie_card">
 				<button class="visibilitybut"><img class="visibility" src="../assets/visibility.png"></button>
@@ -14,7 +19,6 @@
 		    		<h5 class="card-title">{{ movie.title }}</h5>
 		   			<span class="movie_info">{{ movie.year }}</span>
 				
-
 		  		</div>
 			</div>
         </div>
@@ -34,7 +38,8 @@ export default {
   },
   data(){
     return {
-      movies: []
+      movies: [],
+	  searchQuery:null
     }
   },
   mounted() {
@@ -43,7 +48,19 @@ export default {
         .then(res => res.json())
         .then(data => this.movies = data)
         .catch(err => console.log(err.message))
+  },
+  computed: {
+  resultQuery(){
+      if(this.searchQuery){
+      return this.movies.filter((movie)=>{
+        return this.searchQuery.toLowerCase().split(' ').every(v => movie.title.toLowerCase().includes(v))
+      })
+      }else{
+        return this.movies;
+      }
+    }
   }
+  
 }
 
 </script>
@@ -188,6 +205,7 @@ export default {
 .home {
   background-color: rgba(0, 0, 0, 0.932);
   height: 100%;
+
 }
 
 

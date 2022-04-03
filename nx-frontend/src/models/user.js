@@ -1,4 +1,4 @@
-export default class UserLogin {
+export default class User {
     constructor(username, email, password) {
       this.username = username;
       this.email = email;

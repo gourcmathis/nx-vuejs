@@ -20,7 +20,7 @@
         <a href="/register">S'enregistrer</a>
         <p></p>
       </label>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Se connecter</button>
+    <button class="w-100 btn btn-lg btn-primary" >Se connecter</button>
   </form>
 </main>
 
@@ -36,7 +36,7 @@ import Navbar from '@/components/Navbar.vue';
 import User from '../models/user';
 
 export default {
-  name: 'Login',
+  name: 'LoginView',
 
   data() {
     return {

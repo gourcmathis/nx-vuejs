@@ -11,8 +11,17 @@
           <h4><a class="nav-link active" aria-current="page" href="/group">Groups</a></h4>
         </li>   
       </ul>
-    <button onclick="window.location.href='/login'" class="btn btn-outline-light" type="submit" >Connexion</button>
-    <button onclick="window.location.href='/'" class="btn btn-outline-light" type="submit">Deconnexion</button>
+    <div v-if="!currentUser">
+      <router-link to="/login" class="nav-link">
+        <button class="btn btn-outline-light" type="submit" >Connexion</button>
+      </router-link>
+    </div>
+    <div>
+      <router-link to="/" class="nav-link">
+        <button class="btn btn-outline-light" @click.prevent="logOut">Deconnexion</button>
+      </router-link>
+    </div>
+   
     </div>
   </div>
 </nav>
@@ -20,8 +29,18 @@
 
 <script>
 export default {
-
-}
+   computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    }
+  }
+};
 </script>
 
 <style scoped>

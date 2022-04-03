@@ -16,7 +16,7 @@
         <button class="btn btn-outline-light" type="submit" >Connexion</button>
       </router-link>
     </div>
-    <div>
+    <div v-if="currentUser">
       <router-link to="/" class="nav-link">
         <button class="btn btn-outline-light" @click.prevent="logOut">Deconnexion</button>
       </router-link>

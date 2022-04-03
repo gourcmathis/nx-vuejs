@@ -3,23 +3,23 @@
 <body class="text-center">
     
 <main class="form-signin">
-  <form @submit.prevent="submit">
+  <form @submit.prevent="handleRegister">
     <h1 class="h3 mb-3 fw-normal">Créer un compte</h1>
 
     <div class="form-floating">
-      <input v-model="data.username" class="form-control" id="floatingInput" placeholder="Nom">
+      <input v-model.trim="user.username" class="form-control" id="floatingInput" placeholder="Nom">
       <label for="floatingInput">Nom</label>
     </div>
     <div class="form-floating">
-      <input v-model="data.email" type="email" class="form-control" id="floatingMail" placeholder="nom@exemple.com">
+      <input v-model.trim="user.email" type="email" class="form-control" id="floatingMail" placeholder="nom@exemple.com">
       <label for="floatingInput">Adresse mail</label>
     </div>
     <div class="form-floating">
-      <input v-model="data.password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input v-model.trim="user.password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Mot de passe</label>
     </div>
       
-    <button class="w-100 btn btn-lg btn-primary" type="submit">S'enregistrer</button>
+    <button class="w-100 btn btn-lg btn-primary">S'enregistrer</button>
   </form>
 </main>
 
@@ -32,33 +32,41 @@
 // @ is an alias to /src
 import Navbar from '@/components/Navbar.vue'
 import { reactive } from 'vue'
+import User from '../models/user';
 
 export default {
-  name: 'RegisterView',
-  components: {
-    Navbar
+name: "RegisterView",
+data() {
+    return {
+      user: new User('', '', ''),
+    };
   },
-  setup() {
-      const data = reactive({
-          username:'',
-          email: '',
-          password: ''
-      });
-
-      const submit = async () => {
-          await fetch('http://localhost:8000/users/sign_up', {
-              method: 'POST',
-              headers: {'Content-Type': 'application/json'},
-              body: JSON.stringify(data)
-          });
-      }
-
-      return {
-          data,
-          submit
-      }
+  mounted() {
+    if (this.loggedIn) {
+      this.$router.push('/login');
+    }
+  },
+  methods: {
+    handleRegister() {
+      // this.loading = true;
+      // this.$validator.validateAll().then(isValid => {
+      //   if (!isValid) {
+      //     this.loading = false;
+      //     return; 
+      //   }
+        if (this.user.email && this.user.password && this.user.username) {
+          this.$store.dispatch('auth/register', this.user).then(
+            () => {
+              this.$router.push('/login');
+            }
+          )
+          // .catch(error => {
+          //   console.log('ERROR', error)
+          // })
+        };
+    }
   }
-}
+};
 
 </script>
 

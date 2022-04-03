@@ -37,6 +37,7 @@ import User from '../models/user';
 
 export default {
   name: 'LoginView',
+  components: {Navbar},
 
   data() {
     return {
